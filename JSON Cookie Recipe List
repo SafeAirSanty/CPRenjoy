@@ -1,0 +1,69 @@
+{
+  "runSettings": {
+    "temperature": 1.0,
+    "model": "models/gemini-2.0-flash-exp",
+    "candidateCount": 1,
+    "topP": 0.95,
+    "topK": 40,
+    "maxOutputTokens": 8192,
+    "safetySettings": [{
+      "category": "HARM_CATEGORY_HARASSMENT",
+      "threshold": "BLOCK_NONE"
+    }, {
+      "category": "HARM_CATEGORY_HATE_SPEECH",
+      "threshold": "BLOCK_NONE"
+    }, {
+      "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+      "threshold": "BLOCK_NONE"
+    }, {
+      "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+      "threshold": "BLOCK_NONE"
+    }, {
+      "category": "HARM_CATEGORY_CIVIC_INTEGRITY",
+      "threshold": "BLOCK_LOW_AND_ABOVE"
+    }],
+    "responseMimeType": "application/json",
+    "enableCodeExecution": false,
+    "responseSchema": {
+      "type": "OBJECT",
+      "description": "Return some of the most popular cookie recipes",
+      "properties": {
+        "recipes": {
+          "type": "ARRAY",
+          "items": {
+            "type": "OBJECT",
+            "properties": {
+              "recipe_name": {
+                "type": "STRING",
+                "description": "name of the recipe"
+              }
+            }
+          }
+        }
+      }
+    },
+    "enableEnhancedCivicAnswers": true,
+    "enableSearchAsATool": false
+  },
+  "citations": [{
+    "text": "    {\n      \"recipe_name\": \"Snickerd",
+    "uri": "https://medium.com/google-cloud/taming-the-wild-output-effective-control-of-gemini-api-response-formats-with-response-mime-type-da273c08be85"
+  }],
+  "systemInstruction": {
+  },
+  "chunkedPrompt": {
+    "chunks": [{
+      "text": "Generate a list of cookie recipes. Make the outputs in JSON format.",
+      "role": "user",
+      "tokenCount": 15
+    }, {
+      "text": "```json\n{\n  \"recipes\": [\n    {\n      \"recipe_name\": \"Classic Chocolate Chip Cookies\"\n    },\n    {\n       \"recipe_name\": \"Peanut Butter Cookies\"\n    },\n    {\n      \"recipe_name\": \"Oatmeal Raisin Cookies\"\n    },\n    {\n      \"recipe_name\": \"Sugar Cookies\"\n    },\n    {\n      \"recipe_name\": \"Snickerdoodle Cookies\"\n    }\n   ]\n}\n```",
+      "role": "model",
+      "finishReason": "STOP"
+    }],
+    "pendingInputs": [{
+      "text": "",
+      "role": "user"
+    }]
+  }
+}
